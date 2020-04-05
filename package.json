@@ -1,0 +1,27 @@
+{
+  "name": "virtual-keyboard",
+  "version": "1.0.0",
+  "description": "virtual keyboard task",
+  "main": "script.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zdanovich89/virtual-keyboard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zdanovich89/virtual-keyboard/issues"
+  },
+  "homepage": "https://github.com/zdanovich89/virtual-keyboard#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
