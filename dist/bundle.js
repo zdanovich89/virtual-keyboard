@@ -98,39 +98,15 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_
 
 /***/ }),
 
-/***/ "./src/js/create_key.js":
-/*!******************************!*\
-  !*** ./src/js/create_key.js ***!
-  \******************************/
-/*! exports provided: createKey */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createKey\", function() { return createKey; });\n/* harmony import */ var _keys_information_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./keys_information.js */ \"./src/js/keys_information.js\");\n\r\n\r\nlet keys = document.createElement('div');\r\n\r\nfunction createKey() {    \r\n    keys.classList.add('keyboard__keys');  \r\n    _keys_information_js__WEBPACK_IMPORTED_MODULE_0__[\"keysInformation\"].forEach(item => {\r\n        let key = document.createElement('button');\r\n        key.classList.add('keyboard__key');\r\n        if (item.size === \"wide\") {\r\n            key.classList.add('keyboard__key_wide')\r\n        }\r\n        if (item.size === \"space\") {\r\n            key.classList.add('keyboard__key_space')\r\n        }\r\n        key.textContent = item.ru;\r\n        keys.append(key);              \r\n    })\r\n    return keys;\r\n}\r\n\r\nfunction getVirtualKeyboardValue() {\r\n    keys.addEventListener(\"mousedown\", function(e) {\r\n        if (e.target.tagName === \"BUTTON\") {\r\n            return e.target.textContent;\r\n        }   \r\n    })\r\n}\r\n\r\n\r\n\r\n\n\n//# sourceURL=webpack:///./src/js/create_key.js?");
-
-/***/ }),
-
 /***/ "./src/js/create_keyboard.js":
 /*!***********************************!*\
   !*** ./src/js/create_keyboard.js ***!
   \***********************************/
-/*! exports provided: createKeyboard */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createKeyboard\", function() { return createKeyboard; });\n/* harmony import */ var _create_key_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create_key.js */ \"./src/js/create_key.js\");\n/* harmony import */ var _get_virtualKeyboard_value_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./get_virtualKeyboard_value.js */ \"./src/js/get_virtualKeyboard_value.js\");\n\r\n\r\n\r\n\r\n\r\nfunction createKeyboard() {\r\n    let wrapperTextarea = document.createElement('div');\r\n    let textArea = document.createElement('textarea');\r\n    let keyboard = document.createElement('div'); \r\n    wrapperTextarea.classList.add('wrapper-textarea');  \r\n    textArea.classList.add('textarea');  \r\n    keyboard.classList.add('keyboard');  \r\n    textArea.textContent = Object(_get_virtualKeyboard_value_js__WEBPACK_IMPORTED_MODULE_1__[\"getVirtualKeyboardValue\"])();\r\n    keyboard.append(Object(_create_key_js__WEBPACK_IMPORTED_MODULE_0__[\"createKey\"])());\r\n    wrapperTextarea.append(textArea);\r\n    document.body.append(wrapperTextarea, keyboard);                \r\n} \r\n\r\ncreateKeyboard();\r\n\n\n//# sourceURL=webpack:///./src/js/create_keyboard.js?");
-
-/***/ }),
-
-/***/ "./src/js/get_virtualKeyboard_value.js":
-/*!*********************************************!*\
-  !*** ./src/js/get_virtualKeyboard_value.js ***!
-  \*********************************************/
-/*! exports provided: getVirtualKeyboardValue */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getVirtualKeyboardValue\", function() { return getVirtualKeyboardValue; });\n/* harmony import */ var _create_key__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create_key */ \"./src/js/create_key.js\");\n\r\n\r\nfunction getVirtualKeyboardValue() {\r\n    // let keys = document.getElementById(\".keyboard__keys\")\r\n   \r\n}\r\n\r\ngetVirtualKeyboardValue();\n\n//# sourceURL=webpack:///./src/js/get_virtualKeyboard_value.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _keys_information_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./keys_information.js */ \"./src/js/keys_information.js\");\n\r\n\r\n\r\nlet wrapperTextarea = document.createElement('div');\r\nlet textArea = document.createElement('textarea');\r\nlet keyboard = document.createElement('div'); \r\nlet keys = document.createElement('div');\r\n\r\nfunction createKeyboard() {\r\n    wrapperTextarea.classList.add('wrapper-textarea');  \r\n    textArea.classList.add('textarea');  \r\n    keyboard.classList.add('keyboard');      \r\n    keyboard.append(createKey());\r\n    wrapperTextarea.append(textArea);\r\n    document.body.append(wrapperTextarea, keyboard);                \r\n} \r\n\r\nfunction createKey() {       \r\n    keys.classList.add('keyboard__keys'); \r\n    _keys_information_js__WEBPACK_IMPORTED_MODULE_0__[\"keysInformation\"].forEach(item => {\r\n        let key = document.createElement('button');\r\n        key.classList.add('keyboard__key');\r\n        if (item.size === \"wide\") {\r\n            key.classList.add('keyboard__key_wide')\r\n        }\r\n        if (item.size === \"space\") {\r\n            key.classList.add('keyboard__key_space')\r\n        }\r\n        key.textContent = item.ru;\r\n        keys.append(key);              \r\n    })\r\n    return keys;\r\n}\r\n\r\n \r\nkeys.addEventListener(\"mousedown\", function(e) {\r\n    if (e.target.tagName === \"BUTTON\") {\r\n        if (e.target.textContent === 'Backspace') {\r\n            textArea.value = textArea.value.slice(0, -1);\r\n        }\r\n        else if (e.target.textContent === 'Enter') {\r\n            textArea.value += \"\\n\";\r\n        }\r\n        else if (e.target.textContent === 'Tab') {\r\n            textArea.value += \"    \";\r\n        }\r\n        else textArea.value += e.target.textContent;      \r\n    }   \r\n})\r\n\r\ncreateKeyboard();\r\n\r\n\r\n\n\n//# sourceURL=webpack:///./src/js/create_keyboard.js?");
 
 /***/ }),
 
