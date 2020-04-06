@@ -1,7 +1,8 @@
 import {keysInformation} from './keys_information.js';
 
-export function createKey() {
-    let keys = document.createElement('div');
+let keys = document.createElement('div');
+
+export function createKey() {    
     keys.classList.add('keyboard__keys');  
     keysInformation.forEach(item => {
         let key = document.createElement('button');
@@ -16,5 +17,15 @@ export function createKey() {
         keys.append(key);              
     })
     return keys;
-
 }
+
+function getVirtualKeyboardValue() {
+    keys.addEventListener("mousedown", function(e) {
+        if (e.target.tagName === "BUTTON") {
+            return e.target.textContent;
+        }   
+    })
+}
+
+
+

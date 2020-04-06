@@ -1,4 +1,6 @@
 import {createKey} from './create_key.js';
+import {getVirtualKeyboardValue} from './get_virtualKeyboard_value.js';
+
 
 
 export function createKeyboard() {
@@ -7,7 +9,8 @@ export function createKeyboard() {
     let keyboard = document.createElement('div'); 
     wrapperTextarea.classList.add('wrapper-textarea');  
     textArea.classList.add('textarea');  
-    keyboard.classList.add('keyboard');       
+    keyboard.classList.add('keyboard');  
+    textArea.textContent = getVirtualKeyboardValue();
     keyboard.append(createKey());
     wrapperTextarea.append(textArea);
     document.body.append(wrapperTextarea, keyboard);                
