@@ -20,6 +20,7 @@ function createKey() {
     keysInformation.forEach(item => {
         let key = document.createElement('button');
         key.classList.add('keyboard__key');
+        key.setAttribute('data', item.code)
         if (item.size === "wide") {
             key.classList.add('keyboard__key_wide')
         }
@@ -46,6 +47,43 @@ keys.addEventListener("mousedown", function(e) {
         }
         else textArea.value += e.target.textContent;      
     }   
+})
+
+window.addEventListener('keydown', function(e) {
+    let arrKeys = document.querySelectorAll('.keyboard__key'); 
+    arrKeys.forEach(item => {
+        if (e.code === item.getAttribute('data')) {
+            if (e.code === 'Backspace') {
+                item.classList.add('wide_active');
+                textArea.value = textArea.value.slice(0, -1);
+            }
+            if (e.code === 'Enter') {
+                item.classList.add('wide_active');
+                textArea.value += "\n";
+            }
+            if (e.code === 'Tab') {
+                item.classList.add('wide_active');
+                textArea.value += "    ";
+            }
+            if (e.code === 'ControlLeft' ||
+                e.code === 'MetaLeft' ||
+                e.code === 'AltLeft' ||
+                e.code === 'AltRight' ||
+                e.code === 'ControlRight'
+            ) {
+                textArea.value += '';
+            }
+            else textArea.value += e.key; 
+            item.classList.add('keyboard__key_active'); 
+        } 
+    })     
+})
+
+window.addEventListener('keyup', function(e) {
+    let arrKeys = document.querySelectorAll('.keyboard__key'); 
+    arrKeys.forEach(item => {
+        item.classList.remove('keyboard__key_active','wide_active', 'space_active')
+    })
 })
 
 createKeyboard();
