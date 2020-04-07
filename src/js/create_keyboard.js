@@ -6,6 +6,7 @@ let textArea = document.createElement('textarea');
 let keyboard = document.createElement('div'); 
 let keys = document.createElement('div');
 
+
 function createKeyboard() {
     wrapperTextarea.classList.add('wrapper-textarea');  
     textArea.classList.add('textarea');  
@@ -35,17 +36,25 @@ function createKey() {
 
  
 keys.addEventListener("mousedown", function(e) {
-    if (e.target.tagName === "BUTTON") {
-        if (e.target.textContent === 'Backspace') {
+    if (e.target.tagName === "BUTTON") {        
+        if (e.target.textContent === 'Ctrl' ||
+        e.target.textContent === 'Win' ||
+        e.target.textContent === 'Alt' ||               
+        e.target.textContent === 'Shift' ||
+        e.target.textContent === 'CapsLock'      
+        ) {        
+            textArea.value += '';           
+        }
+        else if (e.target.textContent === 'Backspace') {
             textArea.value = textArea.value.slice(0, -1);
         }
         else if (e.target.textContent === 'Enter') {
             textArea.value += "\n";
         }
         else if (e.target.textContent === 'Tab') {
-            textArea.value += "    ";
+            textArea.value += "    ";            
         }
-        else textArea.value += e.target.textContent;      
+        else textArea.value += e.target.textContent                            
     }   
 })
 
@@ -57,20 +66,37 @@ window.addEventListener('keydown', function(e) {
                 item.classList.add('wide_active');
                 textArea.value = textArea.value.slice(0, -1);
             }
-            if (e.code === 'Enter') {
+            else if (e.code === 'Enter') {
                 item.classList.add('wide_active');
                 textArea.value += "\n";
             }
-            if (e.code === 'Tab') {
+            else if (e.code === 'Tab') {
+                e.preventDefault();
                 item.classList.add('wide_active');
                 textArea.value += "    ";
             }
-            if (e.code === 'ControlLeft' ||
+            else if (e.code === 'ArrowUp') {
+                textArea.value += '▲';
+            }
+            else if (e.code === 'ArrowLeft') {
+                textArea.value += '◄';
+            }
+            else if (e.code === 'ArrowDown') {
+                textArea.value += '▼';
+            }
+            else if (e.code === 'ArrowRight') {
+                textArea.value += '►';
+            }
+            else if (e.code === 'ControlLeft' ||
                 e.code === 'MetaLeft' ||
                 e.code === 'AltLeft' ||
                 e.code === 'AltRight' ||
-                e.code === 'ControlRight'
+                e.code === 'ControlRight' ||
+                e.code === 'ShiftLeft' ||
+                e.code === 'ShiftRight'||
+                e.code === 'CapsLock'
             ) {
+                e.preventDefault();
                 textArea.value += '';
             }
             else textArea.value += e.key; 
